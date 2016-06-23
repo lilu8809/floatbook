@@ -10,12 +10,12 @@
  * @version
  * 
 */
-package com.cmcc.floatbook.action.oauth;
+package com.cmcc.floatbook.action.oauth.service;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,30 +32,26 @@ import com.cmcc.floatbook.common.BaseService;
  */
 
 @Controller
-@RequestMapping("/regist")
-public class RegistService extends BaseService{
+@RequestMapping("/login")
+public class LoginService extends BaseService{
 	
-	/**跳转注册页面*/
-	@RequestMapping("/regist.do")
+	/**判断用户是否登录
+	 * 如果已登录，跳转到主页
+	 * 如果未登录，跳转登录页面*/
+	
+	@RequestMapping("/login.do")
 //	@ResponseBody
-	public String toRegist(){
-			log.info("用户注册");
-			return "common/register.jsp";
+	public String isLogin(){
+		
+		HttpSession session = request.getSession();
+		
+		if(session == null || session.getAttribute("phone") == null){
+			log.info("用户未登录");
+			return "common/login.jsp";
+		}else{
+			log.info("用户已登录");
+			return "admin/adminMain.jsp";
+		}
 	}
-	
-	/**判断邮箱是否已被注册*/
-	@RequestMapping("/checkMail.do")
-	@ResponseBody
-	public Map<String,String> checkmail(){
-		log.info("邮箱注册验证");
-		Map<String,String> result = new HashMap<String,String>();
-		String mail = request.getParameter("mail");
-		
-		
-		
-		
-		return null;
-	}
-	
-	
+
 }

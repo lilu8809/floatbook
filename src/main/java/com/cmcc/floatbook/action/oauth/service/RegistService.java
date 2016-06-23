@@ -10,7 +10,7 @@
  * @version
  * 
 */
-package com.cmcc.floatbook.action.oauth;
+package com.cmcc.floatbook.action.oauth.service;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,0 +1,23 @@
+	body {
+	margin:0 auto;
+	background-color: #FFF;
+	width:780px;
+}	
+	
+	body,td,th {
+	font-size: 14px;
+	color: #777;
+	font-family: 微软雅黑;
+}
+
+#container{ width:780px;text-align:center; margin:0 auto;}
+#regist{float:right; margin-right:10px; font-size:12px; font-family:"宋体"; }
+#login{float:right;margin-right:10px;font-size:12px;font-family:"宋体";}
+#logo{margin-top:10px;}
+
+#pic{
+	text-align:center; margin-top:-10px; border:1px solid #0085cc;
+	height:380px;
+	}
+.altbg1			{ background: #F3F6FA }
+.altbg2			{ background: #FFFFFF }

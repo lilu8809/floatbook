@@ -27,6 +27,7 @@
   
 <!-- （2）DispatcherServlet配置 -->
 <!-- Controller 配置，类似于struts2中的action -->
+<!-- servlet-name名字跟 controller-servlet中的‘controller’要保持一致 -->
   <servlet>
     <servlet-name>controller</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
