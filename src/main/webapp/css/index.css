@@ -1,0 +1,29 @@
+body{ margin:auto;}
+body,td,th {
+	font-size: 14px;
+	color: #777;
+	font-family: 微软雅黑;
+}
+a:link {
+	color: #00a0da;
+	text-decoration: underline;
+}
+a:visited {
+	color: #00a0da;
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+	color: #e60012;
+}
+a:active {
+	text-decoration: underline;
+}
+a {
+	font-family: 宋体;
+	font-size: 12px;
+}
+#regist{float:right; margin-right:10px; font-size:12px; font-family:"宋体"; }
+
+#login{float:right;margin-right:10px;font-size:12px;font-family:"宋体";}
+#logo{margin-top:5%;}
