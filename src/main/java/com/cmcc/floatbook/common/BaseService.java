@@ -12,18 +12,13 @@
 */
 package com.cmcc.floatbook.common;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
 
 /**
  * @包名：com.cmcc.floatbook.common
@@ -34,7 +29,8 @@ import org.springframework.web.servlet.mvc.AbstractController;
  * @版本：1.0.0
  * 
  */
-public class BaseService extends AbstractController{
+@Controller
+public class BaseService {
 	protected Logger log = Logger.getLogger(getClass());
 	
 	public HttpServletRequest request;
@@ -42,7 +38,7 @@ public class BaseService extends AbstractController{
 	public HttpServletResponse response;
 	
 	public HttpSession session;
-	
+	//@ModelAttribute 注释某个方法后，该Controller的所有方法在调用前，先执行此@ModelAttribute方法
 	@ModelAttribute
 	public void setReqAndResp(HttpServletRequest request, HttpServletResponse response){  
         this.request = request;  
@@ -54,15 +50,5 @@ public class BaseService extends AbstractController{
 		log.info("");
 	}
 
-	/* (non-Javadoc)
-	 * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		List<String> userlist = new ArrayList<String>();
-		return new ModelAndView("userlist","users",userlist);//视图组件的逻辑名称(需跳转的页面名称)，模型对象名称，模型对象的值
-	}
 
 }
