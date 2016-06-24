@@ -10,16 +10,20 @@
  * @version
  * 
 */
-package com.cmcc.floatbook.action.oauth.service;
+package com.cmcc.floatbook.action.oauth;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cmcc.floatbook.common.BaseService;
+import com.cmcc.floatbook.models.User;
+import com.cmcc.floatbook.service.oauth.RegistService;
 
 /**
  * @包名：com.cmcc.floatbook.oauth.login
@@ -33,7 +37,10 @@ import com.cmcc.floatbook.common.BaseService;
 
 @Controller
 @RequestMapping("/regist")
-public class RegistService extends BaseService{
+public class RegistAction extends BaseService{
+	
+	@Resource
+	public RegistService registService;
 	
 	/**跳转注册页面*/
 	@RequestMapping("/regist.do")
@@ -57,11 +64,52 @@ public class RegistService extends BaseService{
 			result.put("code", "1");
 			result.put("msg", "邮箱无效");
 		}
-		
-		
-		
 		return result;
 	}
+	
+	/**判断号码是否已被注册*/
+	@RequestMapping("/checkPhone.do")
+	@ResponseBody
+	public Map<String,String> checkPhone(){
+		log.info("号码注册验证");
+		Map<String,String> result = new HashMap<String,String>();
+		String phone = request.getParameter("phone");
+		User user = registService.getUserByPhone(phone);
+		
+		if(user==null || user.getPhone()==null){
+			result.put("code", "0");
+			result.put("msg", "可以注册");
+		}else{
+			result.put("code", "1");
+			result.put("msg", "号码已被注册");
+		}
+		return result;
+	}
+	
+	/**提交注册信息*/
+	@RequestMapping("/doRegist.do")
+//	@ResponseBody
+	public String doRegist(){
+		log.info("提交注册信息");
+		String mail = request.getParameter("email");
+		if(mail!=null && mail.contains("@")){
+			return "common/login.jsp";
+		}else{
+			return "common/register.jsp";
+		}
+	}
+
+	
+	
+	public RegistService getRegistService() {
+		return registService;
+	}
+
+	public void setRegistService(RegistService registService) {
+		this.registService = registService;
+	}
+	
+	
 	
 	
 }

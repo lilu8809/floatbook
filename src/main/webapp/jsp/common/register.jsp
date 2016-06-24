@@ -11,11 +11,9 @@
 	<title>加入float books，畅享流动</title>
 	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen"/>
 	<link rel="stylesheet" href="../css/regist.css" type="text/css" media="screen"/>
-
-	<script src="../js/regist/regist.js"></script>
-	<script src="../js/jquery-1.7.2.min.js"></script>
+	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/jquery.flexslider-min.js"></script>
-
+	<script src="../js/regist/regist.js"></script>
 </head>
 <body>   
 	<div id="logo" ><img src="../images/logoxiaowhite.jpg" /></div>
@@ -33,42 +31,46 @@
 	<tr></tr>
 	<tr></tr></table>
 	
-	<form id="register" method="post" name="register" action="<%=request.getContextPath()%>/common/registerSubmit?method=register">
-	<center>
-	<table class="tableborder" align="center" cellpadding="4" cellspacing="1" width="97%">
-	<tbody>
-	<tr>
-		<td colspan="2" class="header" align="left">大胆留下你的名号</td>
-	</tr>
-	<tr>
-		<td class="altbg1" width="21%" align="right">我的名字:</td>
-		<td class="altbg2" align="left">
-			<input id="username" name="username" size="25" maxlength="25" type="text" > 
-			<span id="usermsg"></span>
-		</td>
-	</tr>
-	<tr>
-		<td class="altbg1" align="right">我的邮箱:</td>
-		<td class="altbg2" align="left"><input name="email" type="text" id="email" size="25" >
-		<span id="emailLabel" >填写企业邮箱～</span>
-		</td>
-	</tr>
-	<tr>
-		<td class="altbg1" align="right">我的手机:</td>
-		<td class="altbg2" align="left"><input name="telephone" size="25" type="text" onFocus="beforeSubmit() "></td>
-	</tr>
-	
-	<tr>
-		<td></td>
-		<td align="left">
-	<input type="button" name="regsubmit" value="确   认" onclick="submitForm()"></td>
-	</tr>
-	
-	</tbody></table>
-	<br>
-	</center>
+	<form id="register" method="post" name="register" action="../regist/doRegist.do">
+		<center>
+		<table class="tableborder" align="center" cellpadding="4" cellspacing="1" width="97%">
+		<tbody>
+		<tr>
+			<td colspan="2" class="header" align="left">大胆留下你的名号</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="21%" align="right">我的名字:</td>
+			<td class="altbg2" align="left">
+				<input id="username" name="username" size="25" maxlength="25" type="text" > 
+				<span id="usermsg"></span>
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" align="right">我的邮箱:</td>
+			<td class="altbg2" align="left">
+				<input name="email" type="text" id="email" size="25" >
+				<span id="emailLabel" >填写企业邮箱～</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" align="right">我的手机:</td>
+			<td class="altbg2" align="left">
+				<input id="telephone" size="25" type="text"><!-- onFocus="checkEmail() " -->
+				<span id="phoneLabel" >11位手机号码</span></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="left">
+				<input type="button" id="regsubmit" value="确   认" /><!-- onclick="submitForm()" -->
+				<br/>
+				<span id="tips"></span>
+			</td>
+		</tr>
+		</tbody></table>
+		<br>
+		</center>
 	</form>
-	
+<!-- 	<span id="welcome" >欢迎来到Float Books 大家庭</span> -->
 	</div>
 	
 	</div>

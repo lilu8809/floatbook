@@ -10,7 +10,7 @@
  * @version
  * 
 */
-package com.cmcc.floatbook.action.oauth.service;
+package com.cmcc.floatbook.action.oauth;
 
 import javax.servlet.http.HttpSession;
 
@@ -33,7 +33,7 @@ import com.cmcc.floatbook.common.BaseService;
 
 @Controller
 @RequestMapping("/login")
-public class LoginService extends BaseService{
+public class LoginAction extends BaseService{
 	
 	/**判断用户是否登录
 	 * 如果已登录，跳转到主页
