@@ -3,14 +3,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>加入float books，畅享流动</title>
-<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen"/>
-<link rel="stylesheet" href="../css/regist.css" type="text/css" media="screen"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="this is my page">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>加入float books，畅享流动</title>
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="../css/regist.css" type="text/css" media="screen"/>
 
-<script type="text/javascript">
-
-        </script>
+	<script src="../js/regist/regist.js"></script>
+	<script src="../js/jquery-1.7.2.min.js"></script>
+	<script src="../js/jquery.flexslider-min.js"></script>
 
 </head>
 <body>   
@@ -46,7 +50,7 @@
 	<tr>
 		<td class="altbg1" align="right">我的邮箱:</td>
 		<td class="altbg2" align="left"><input name="email" type="text" id="email" size="25" >
-		<a id="emailLabel" >填写企业邮箱～</a>
+		<span id="emailLabel" >填写企业邮箱～</span>
 		</td>
 	</tr>
 	<tr>

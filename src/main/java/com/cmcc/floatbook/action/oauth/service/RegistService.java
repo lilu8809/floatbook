@@ -49,12 +49,18 @@ public class RegistService extends BaseService{
 	public Map<String,String> checkmail(){
 		log.info("邮箱注册验证");
 		Map<String,String> result = new HashMap<String,String>();
-		String mail = request.getParameter("mail");
+		String mail = request.getParameter("email");
+		if(mail!=null && mail.contains("@")){
+			result.put("code", "0");
+			result.put("msg", "可以注册");
+		}else{
+			result.put("code", "1");
+			result.put("msg", "邮箱无效");
+		}
 		
 		
 		
-		
-		return null;
+		return result;
 	}
 	
 	

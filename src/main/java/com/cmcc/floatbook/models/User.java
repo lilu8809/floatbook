@@ -27,6 +27,10 @@ public class User {
 	private String phone;
 	private String pwd;
 	
+	public User(){
+		super();
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -45,6 +49,8 @@ public class User {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+	
+	
 	
 	
 	

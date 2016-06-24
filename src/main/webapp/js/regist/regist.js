@@ -2,7 +2,7 @@ var ue = false;
 var etype = false;
 var xmlHttp;
 
-function checkEmail(emailstr) {
+function checkEmail(email) {
 	
 	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlHttp = new XMLHttpRequest();
@@ -19,32 +19,38 @@ function checkEmail(emailstr) {
 	//进入Action中的checkemail方法
 	$.ajax({
 		type:'post',
-		url:'/floatbook/'
-		
+		url:'/floatbook/regist/checkMail.do',
+		data:{email:email},
+		dataType:"json",
+		timeout:10000,
+		cache:false,
+		success:function(data){
+			if(data.code == 0){
+				$('#emailLabel').text(data.msg);
+			}else{
+				$('#emailLabel').text(data.msg);
+				$('#emailLabel').css('color','red');	
+			}
+		}
 	});
 	
-	
+	/*
 	var url ="<%=request.getContextPath()%>/common/registerSubmit?method=checkemail"
 			+ "&" + "email=" + emailstr;
-	//alert("欢迎进入first step--1");
-	//ajax函数，后面直接加javascript函数
 	xmlHttp.onreadystatechange = function() {//当使用 .open("GET",url,true)=true 时，请规定在响应  处于onreadystatechange 事件中的就绪状态时执行的函数：
 		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-		//	alert("欢迎进入third step--3,email="+emailstr+";and responseText="+xmlHttp.responseText.toString());
 			if (xmlHttp.responseText.toString() == "s1") {
-				//alert("欢迎进入third step--4");
 				document.getElementById("emailLabel").innerHTML = "该邮箱已被注册";
 				ue = false;
 			} else if (xmlHttp.responseText.toString() == "s2") {
-				//alert("欢迎进入third step--5");
 				document.getElementById("emailLabel").innerHTML = "该邮箱可以注册";
-				//document.getElementById("emailLabel").  
 				ue = true;
 			}
 		}
 	};
 	xmlHttp.open("GET", url, true);
 	xmlHttp.send();
+	*/
 }
 //判断邮箱是否为空
 function beforeSubmit() {
