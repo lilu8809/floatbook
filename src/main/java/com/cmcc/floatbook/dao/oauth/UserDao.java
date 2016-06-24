@@ -12,6 +12,8 @@
 */
 package com.cmcc.floatbook.dao.oauth;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cmcc.floatbook.models.User;
 
 /**
@@ -26,5 +28,7 @@ import com.cmcc.floatbook.models.User;
 public interface UserDao {
 
 	public void insertUser(User user);
+	
+	public User selectUserByPhone(@Param("phone") String phone);
 	
 }

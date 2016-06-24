@@ -76,7 +76,7 @@ public class RegistAction extends BaseService{
 		String phone = request.getParameter("phone");
 		User user = registService.getUserByPhone(phone);
 		
-		if(user==null || user.getPhone()==null){
+		if(user==null || user.getTelephone()==null){
 			result.put("code", "0");
 			result.put("msg", "可以注册");
 		}else{

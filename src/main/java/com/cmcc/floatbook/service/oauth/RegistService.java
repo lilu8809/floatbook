@@ -12,8 +12,11 @@
 */
 package com.cmcc.floatbook.service.oauth;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
+import com.cmcc.floatbook.dao.oauth.UserDao;
 import com.cmcc.floatbook.models.User;
 
 /**
@@ -28,12 +31,24 @@ import com.cmcc.floatbook.models.User;
 @Service
 public class RegistService {
 	
+	@Resource
+	public UserDao userDao;
+	
 	public User getUserByPhone(String phone){
-		User user = new User();
-		
+		User user = userDao.selectUserByPhone(phone);
 		return user;
 		
 		
 	}
+
+	public UserDao getUserDao() {
+		return userDao;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+	
+	
 
 }
