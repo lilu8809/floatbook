@@ -37,8 +37,16 @@ public class RegistService {
 	public User getUserByPhone(String phone){
 		User user = userDao.selectUserByPhone(phone);
 		return user;
-		
-		
+	}
+	
+	public User getUserByMail(String mail){
+		User user = userDao.selectUserByMail(mail);
+		return user;
+	}
+	
+	public int insertUser(User user){
+		int result = userDao.insertUser(user);
+		return result;
 	}
 
 	public UserDao getUserDao() {

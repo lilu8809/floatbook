@@ -27,8 +27,10 @@ import com.cmcc.floatbook.models.User;
  */
 public interface UserDao {
 
-	public void insertUser(User user);
+	public int insertUser(User user);
 	
 	public User selectUserByPhone(@Param("phone") String phone);
+	
+	public User selectUserByMail(@Param("mail") String mail);
 	
 }

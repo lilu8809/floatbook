@@ -15,6 +15,15 @@
     <select id="selectUserByPhone" parameterType="String" resultMap="userMap">
         select * from `user_table` where telephone = #{phone}
     </select>
+    
+    <select id="selectUserByMail" parameterType="String" resultMap="userMap">
+        select * from `user_table` where email = #{mail}
+    </select>
+    
+    <insert id="insertUser" parameterType="User" >
+    	insert into `user_table` (user_name,telephone,email,role,password,regist_date) 
+    		values(#{user_name},#{telephone},#{email},#{role},#{password},now())
+    </insert>
 </mapper>
 
 

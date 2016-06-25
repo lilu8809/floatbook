@@ -55,7 +55,7 @@
 		<tr>
 			<td class="altbg1" align="right">我的手机:</td>
 			<td class="altbg2" align="left">
-				<input id="telephone" size="25" type="text"><!-- onFocus="checkEmail() " -->
+				<input id="telephone" name="telephone" size="25" type="text"><!-- onFocus="checkEmail() " -->
 				<span id="phoneLabel" >11位手机号码</span></td>
 		</tr>
 		<tr>

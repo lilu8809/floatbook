@@ -57,12 +57,13 @@ public class RegistAction extends BaseService{
 		log.info("邮箱注册验证");
 		Map<String,String> result = new HashMap<String,String>();
 		String mail = request.getParameter("email");
-		if(mail!=null && mail.contains("@")){
+		User user = registService.getUserByMail(mail);
+		if(user==null || user.getEmail()==null){
 			result.put("code", "0");
 			result.put("msg", "可以注册");
 		}else{
 			result.put("code", "1");
-			result.put("msg", "邮箱无效");
+			result.put("msg", "邮箱已被注册");
 		}
 		return result;
 	}
@@ -92,7 +93,18 @@ public class RegistAction extends BaseService{
 	public String doRegist(){
 		log.info("提交注册信息");
 		String mail = request.getParameter("email");
-		if(mail!=null && mail.contains("@")){
+		String telephone = request.getParameter("telephone");
+		String username = request.getParameter("username");
+		
+		User user = new User();
+		user.setEmail(mail);
+		user.setTelephone(telephone);
+		user.setUser_name(username);
+		
+		int result = registService.insertUser(user);
+		
+		
+		if(result>0){
 			return "common/login.jsp";
 		}else{
 			return "common/register.jsp";

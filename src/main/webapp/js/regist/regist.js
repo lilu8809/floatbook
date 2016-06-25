@@ -2,6 +2,18 @@
 $(document).ready(function(){
 	var ue = false;
 	var ptype = false;
+	$('#email').click(function(){
+		var name = $('#username').val();
+		if(name.length<1){
+			$('#usermsg').text("别忘记名字～");
+			$('#usermsg').css('color','red');
+			$('#usermsg').show();
+			ue = false;
+			return;
+		}else{
+			$('#usermsg').hide();
+		}
+	});
 		//验证邮箱格式和是否被注册
 		$('#telephone').click(function(){
 			var email = $('#email').val();
@@ -61,7 +73,7 @@ $(document).ready(function(){
 					cache:false,
 					success:function(data){
 						if(data.code == 0){
-							document.register.submit();
+							$('#register').submit();//表单提交
 							$('#telephone').val('');
 							$('#email').val('');
 							$('#username').val('');

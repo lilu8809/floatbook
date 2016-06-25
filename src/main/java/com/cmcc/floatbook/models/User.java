@@ -26,9 +26,9 @@ public class User {
 	private String telephone;
 	private String user_name;
 	private String email;
-	private String role;
+	private String role="2";
 	private String regist_date;
-	private String password;
+	private String password = "123456";
 	
 	public String getTelephone() {
 		return telephone;
