@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+<%-- <%@ taglib prefix="s" uri="/struts-tags"%> --%>
 <!DOCTYPE HTML>
 <head>
 <title>Float Books</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link href="<%=request.getContextPath()%>/css/styleadmin.css" rel="stylesheet" type="text/css" media="all"/>
-<link href="<%=request.getContextPath()%>/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.9.0.min.js"></script> 
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/move-top.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/easing.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.nivo.slider.js"></script>
+<link href="../css/styleadmin.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="../css/slider.css" rel="stylesheet" type="text/css" media="all"/>
+<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script> 
+<script type="text/javascript" src="../js/move-top.js"></script>
+<script type="text/javascript" src="../js/easing.js"></script>
+<script type="text/javascript" src="../js/jquery.nivo.slider.js"></script>
+
+
 <script type="text/javascript">
     $(window).load(function() {
         $('#slider').nivoSlider();
@@ -29,25 +31,27 @@
 					<ul>
 						<li>
 							<a href="#">
+								<script>
+								</script>
 								<c:if test='<%=(session.getAttribute("user")!=null) %>'>
-				       			欢迎 ${user.username }
+				       			欢迎 <%=(session.getAttribute("username") ) %>
 								</c:if>	
 								<c:if test='<%=(session.getAttribute("user")==null) %>'>
 								 	<a href="<%=request.getContextPath()%>/common/login.jsp">要不要先登录再来啊-_-#</a>
 								</c:if>
 							</a>
 						</li>
-						<li><a href="<%=request.getContextPath()%>/admin/ShowBooks">查看 Books</a></li>
-						<li><a href="<%=request.getContextPath()%>/common/isUserLogin">添加 Books</a></li>
+						<li><a href="../admin/ShowBooks">查看 Books</a></li>
+						<li><a href="../common/isUserLogin">添加 Books</a></li>
 					</ul>
 				</div>
 					<div class="account_desc">
 						<ul>
-							<li><a href="contact.html"> </a></li>
-							<li><a href="contact.html"> </a></li>
-							<li><a href="previewBook.jsp"> </a></li>
-							<li><a href="#"> </a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">芝麻关门</a></li><!-- 退出系统，清除session -->
+<!-- 							<li><a href="contact.html"> </a></li> -->
+<!-- 							<li><a href="contact.html"> </a></li> -->
+<!-- 							<li><a href="previewBook.jsp"> </a></li> -->
+<!-- 							<li><a href="#"> </a></li> -->
+							<li><a href="../jsp/home/index.jsp">芝麻关门</a></li><!-- 退出系统，清除session -->
 						</ul>
 					</div>
 				<div class="clear"></div>

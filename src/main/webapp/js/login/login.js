@@ -2,47 +2,46 @@
 $(document).ready(function(){
 	var status=0;
 	var username;
-	var telephone;
 	var loginError;
 	
-	function checkname(){
-		username = document.getElementById("username").value;
-		telephone = document.getElementById("telephone").value;
-		if(username.length<=0) {
-			loginError = "哎哟,大名忘写了 ";
+//	if($.session.get('loginstatus')=='logining'){
+//		$('#loginInfo').text('登录失败阿喂，请确认用户名密码');
+//	}else{
+//		$('#loginInfo').text('')
+//		$('#loginInfo').hide();
+//	}
+	
+	$('#password').click(function(){
+		var telephone = $('#telephone').val();
+		if(telephone.length<1) {
+			$('#phoneLabel').text('哎哟,号码忘写了');
+			$('#phoneLabel').css('color','red');
+//			$('#phoneLabel').show();
 			status=0;
 		}else{
-			loginError = "";
-			status=1;
-		}
-		document.getElementById("nameInfo").innerHTML = loginError;
-		return ;
-	}
-	function checktelephone(){
-		if(telephone.length<=0) {
-			loginError = "哎哟,不留号码，怎么让伙伴找到你";
-			status=0;
-		}else{
-			loginError = "";
+			$('#phoneLabel').text('11位手机号码');
+			$('#phoneLabel').css('color','#777');
+//			$('#phoneLabel').hide();
 			status=1;
 		}	
-		document.getElementById("telephoneInfo").innerHTML = loginError;
-		return ;
-	}
+	});
 
-	function beforeLogin(){
-		checkname();
-		checktelephone();
-		//alert("show me status:"+status);
-		if(status==1){
-			//alert("go on to submit:"+status);
-			
-			document.LoginForm.submit();
-			if(session.getAttribute("showStr")=="用户名或密码不对啦"){
-				document.getElementById("loginResult").value="用户名或密码不对啦";
-			}
+	$('#loginsubmit').click(function(){
+		var telephone = $('#telephone').val();
+		var password = $('#password').val();
+		if(telephone.length<1 || password.length<1){
+			$('#checkInfo').text("用户名或密码记得填啦");
+			$('#checkInfo').css('color','red');
+			$('#checkInfo').show();
 		}else{
-			alert("检查下是不是啥输错啦 T_T");
+			$('#LoginForm').submit();
+			$('#checkInfo').hide();
+//			if(session.getAttribute('status')=='error'){
+//				$('#checkInfo').text("用户名或密码记得填啦");
+//				$('#checkInfo').css('color','red');
+//				$('#checkInfo').show();
+//			}
+			
 		}
-	}
+	});
 });

@@ -21,6 +21,7 @@ package com.cmcc.floatbook.models;
  * @版本：1.0.0
  * 
  */
+
 public class User {
 	
 	private String telephone;
@@ -28,7 +29,7 @@ public class User {
 	private String email;
 	private String role="2";
 	private String regist_date;
-	private String password = "123456";
+	private String password;
 	
 	public String getTelephone() {
 		return telephone;
@@ -67,6 +68,9 @@ public class User {
 		this.password = password;
 	}
 	
+//	public User(){
+//		super();
+//	}
 	
 	
 	

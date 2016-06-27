@@ -12,14 +12,15 @@
 */
 package com.cmcc.floatbook.action.oauth;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cmcc.floatbook.common.BaseService;
+import com.cmcc.floatbook.models.User;
+import com.cmcc.floatbook.service.oauth.LoginService;
 
 /**
  * @包名：com.cmcc.floatbook.oauth.login
@@ -34,6 +35,9 @@ import com.cmcc.floatbook.common.BaseService;
 @Controller
 @RequestMapping("/login")
 public class LoginAction extends BaseService{
+	
+	@Resource
+	public LoginService loginService;
 	
 	/**判断用户是否登录
 	 * 如果已登录，跳转到主页
@@ -51,6 +55,34 @@ public class LoginAction extends BaseService{
 		}else{
 			log.info("用户已登录");
 			return "admin/adminMain.jsp";
+		}
+	}
+	
+	/**用户登录*/
+	@RequestMapping("/dologin.do")
+//	@ResponseBody
+	public String doLogin(){
+		
+		HttpSession session =  request.getSession();
+		
+		String telephone = request.getParameter("telephone");
+		String password = request.getParameter("password");
+		
+		User user = loginService.getUser(telephone,password);
+		if(user != null){
+			session.setAttribute("user", user);
+			session.setAttribute("telephone", telephone);
+			session.setAttribute("username", user.getUser_name());
+			session.setAttribute("role", user.getRole());
+			session.setAttribute("mail", user.getEmail());
+			
+			session.setAttribute("loginstatus", "logined");
+			
+			return "admin/adminMain.jsp";//跳转到首页
+		}else{
+			log.info("没有找到用户，登录失败");
+			session.setAttribute("loginstatus", "logining");
+			return "common/login.jsp";
 		}
 	}
 

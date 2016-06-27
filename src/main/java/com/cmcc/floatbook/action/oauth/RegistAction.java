@@ -95,16 +95,17 @@ public class RegistAction extends BaseService{
 		String mail = request.getParameter("email");
 		String telephone = request.getParameter("telephone");
 		String username = request.getParameter("username");
+		String password = request.getParameter("password");
 		
 		User user = new User();
 		user.setEmail(mail);
 		user.setTelephone(telephone);
 		user.setUser_name(username);
+		user.setPassword(password);
 		
 		int result = registService.insertUser(user);
-		
-		
 		if(result>0){
+			
 			return "common/login.jsp";
 		}else{
 			return "common/register.jsp";

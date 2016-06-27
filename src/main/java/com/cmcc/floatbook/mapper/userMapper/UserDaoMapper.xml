@@ -20,6 +20,10 @@
         select * from `user_table` where email = #{mail}
     </select>
     
+    <select id="selectUser" parameterType="String" resultMap="userMap">
+        select * from `user_table` where telephone = #{telephone} and password=#{password}
+    </select>
+    
     <insert id="insertUser" parameterType="User" >
     	insert into `user_table` (user_name,telephone,email,role,password,regist_date) 
     		values(#{user_name},#{telephone},#{email},#{role},#{password},now())

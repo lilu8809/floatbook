@@ -49,15 +49,37 @@ $(document).ready(function(){
 				});
 			}//end else
 		});//end click function
+		
+		$('#checkpwd').click(function(){
+			var password = $('#password').val();
+			if(password.length<6){
+				$('#pwdLabel').text("密码长度不够～");
+				$('#pwdLabel').css('color','red');
+				$('#password').val('');
+				return;
+			}else{
+				$('#usermsg').hide();
+			}
+		});
 			
 		$('#regsubmit').click(function(){
 			var phone = $('#telephone').val();
+			var pwd = $('#password').val();
+			var checkpwd = $('#checkpwd').val();
 			if(phone.length!=11){
 				$('#phoneLabel').text('号码格式不对')
 				$('#phoneLabel').css('color','red');
 				ptype = false;
 				return;
 			}
+			
+			if(checkpwd!=pwd){
+				$('#checkpwdLabel').text('密码不匹配')
+				$('#checkpwdLabel').css('color','red');
+				return;
+			}
+			
+			
 			if(!ue || ptype){
 				return;
 		//		$('#tips').text("不听劝，都说了不能有错误信息了 T-T");
