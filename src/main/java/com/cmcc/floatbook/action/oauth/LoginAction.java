@@ -49,7 +49,7 @@ public class LoginAction extends BaseService{
 		
 		HttpSession session = request.getSession();
 		
-		if(session == null || session.getAttribute("phone") == null){
+		if(session == null || session.getAttribute("telephone") == null){
 			log.info("用户未登录");
 			return "common/login.jsp";
 		}else{
@@ -70,7 +70,6 @@ public class LoginAction extends BaseService{
 		
 		User user = loginService.getUser(telephone,password);
 		if(user != null){
-			session.setAttribute("user", user);
 			session.setAttribute("telephone", telephone);
 			session.setAttribute("username", user.getUser_name());
 			session.setAttribute("role", user.getRole());
@@ -84,6 +83,23 @@ public class LoginAction extends BaseService{
 			session.setAttribute("loginstatus", "logining");
 			return "common/login.jsp";
 		}
+	}
+	
+	/**用户登出
+	 * 跳转到home页面，并清楚session*/
+	
+	@RequestMapping("/loginout.do")
+//	@ResponseBody
+	public String loginOut(){
+		
+		HttpSession session = request.getSession();
+		session.removeAttribute("loginstatus");
+		session.removeAttribute("telephone");
+		session.removeAttribute("username");
+		session.removeAttribute("mail");
+		session.removeAttribute("role");
+		log.info("用户登出");
+		return "admin/adminMain.jsp";
 	}
 
 }
