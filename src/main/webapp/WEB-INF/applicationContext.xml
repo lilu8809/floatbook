@@ -52,40 +52,4 @@
 		<property name="basePackage" value="com.cmcc.floatbook.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
-	
-	<!-- jdbc事务管理器 -->
-<!-- 	<bean id="transactionManager" -->
-<!-- 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
-<!-- 		<property name="dataSource" ref="dataSource" /> -->
-<!-- 	</bean> -->
-
-<!-- 	<tx:advice id="userTxAdvice" transaction-manager="transactionManager"> -->
-<!-- 		<tx:attributes> -->
-<!-- 			<tx:method name="addNotify" propagation="REQUIRED" read-only="false" -->
-<!-- 				rollback-for="java.lang.Exception" /> -->
-<!-- 			<tx:method name="addReceiveReply" propagation="REQUIRED" read-only="false" -->
-<!-- 				rollback-for="java.lang.Exception" /> -->
-<!-- 			<tx:method name="addNotifyReply" propagation="REQUIRED" read-only="false" -->
-<!-- 				rollback-for="java.lang.Exception" /> -->
-<!-- 			<tx:method name="addNotifyNewUser" propagation="REQUIRED" read-only="false" -->
-<!-- 				rollback-for="java.lang.Exception" /> -->
-<!-- 		</tx:attributes> -->
-<!-- 	</tx:advice> -->
-
-<!-- 	<aop:config> -->
-<!-- 		<aop:pointcut id="pc" -->
-<!-- 			expression="execution(public * com.cmcc.ercs.eec.bean.impl.*.*.*(..))" /> -->
-<!-- 		<aop:advisor pointcut-ref="pc" advice-ref="userTxAdvice" /> -->
-<!-- 	</aop:config>  -->
-	
-	
-<!-- 	<task:annotation-driven/>  -->
-	
-<!-- 	<context:component-scan base-package="com.cmcc.ercs.eec.cronTask" /> -->
-	
-<!-- 	<bean id="taskTest" class="com.cmcc.ercs.eec.cronTask.NotifyTask" /> -->
-<!-- 	<task:scheduled-tasks>     -->
-<!-- 		<task:scheduled ref="taskTest" method="sendNotify" cron="0/20 * * * * ?" /> -->
-<!-- 	</task:scheduled-tasks> -->
-
 </beans>
