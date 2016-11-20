@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cmcc.floatbook.dao.books.BookDao">
+	<!-- 对象属性和表字段的对应 -->
+	<resultMap id="bookMap" type="Book">
+		<result property="author" column="author" />
+		<result property="bookCategory" column="category" />
+		<result property="bookCount" column="bookCount" />
+		<result property="bookId" column="bookId" />
+		<result property="bookImag" column="book_imag" />
+		<result property="bookIntroduce" column="description" />
+		<result property="bookName" column="book_name" />
+		<result property="bookOwner" column="bookOwner" />
+		<result property="bookUseful" column="bookUseful" />
+		<result property="dateString" column="date_string" />
+		<result property="ISBN" column="ISBN" />
+		<result property="storeDate" column="storeDate" />
+		<result property="storePlace" column="storePlace" />
+		<result property="subtitle" column="subtitle"/>
+	</resultMap>
+
+    <!-- <select id="getTopBorrowOutBook" parameterType="String" resultMap="bookMap">
+        select * from `user_table` where telephone = #{phone}
+    </select>
+ -->    
+    <!-- <select id="getBookByISBN" parameterType="String" resultMap="bookMap">
+        select * from `user_table` where email = #{mail}
+    </select>
+ -->    
+    <select id="getTopBorrowBook" parameterType="Integer" resultMap="bookMap">
+        select bt.*, ct.category from book_table bt,category_table ct where bt.category_id=ct.id limit #{topNum}
+    </select>
+    
+   <!--  <insert id="addBook" parameterType="User" >
+    	insert into `user_table` (user_name,telephone,email,role,password,regist_date) 
+    		values(#{user_name},#{telephone},#{email},#{role},#{password},now())
+    </insert> -->
+    
+   <!--  <select id="findBooksByCategory" parameterType="String" resultMap="userMap">
+        select * from `user_table` where telephone = #{phone}
+    </select> -->
+</mapper>
+
+

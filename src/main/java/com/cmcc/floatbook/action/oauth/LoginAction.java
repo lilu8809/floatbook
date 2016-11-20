@@ -76,6 +76,7 @@ public class LoginAction extends BaseService{
 			session.setAttribute("mail", user.getEmail());
 			
 			session.setAttribute("loginstatus", "logined");
+			log.info(telephone+"-"+user.getUser_name()+"-登录成功");
 			
 			return "admin/adminMain.jsp";//跳转到首页
 		}else{

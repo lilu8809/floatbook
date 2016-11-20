@@ -10,7 +10,7 @@
  * @version
  * 
 */
-package com.cmcc.floatbook.action.manage;
+package com.cmcc.floatbook.action.manage.books;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cmcc.floatbook.common.BaseService;
 import com.cmcc.floatbook.models.Book;
-import com.cmcc.floatbook.service.manage.BookService;
+import com.cmcc.floatbook.service.manage.books.BookService;
 
 /**
  * @包名：com.cmcc.floatbook.action.manage

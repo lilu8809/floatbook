@@ -4,13 +4,6 @@ $(document).ready(function(){
 	var username;
 	var loginError;
 	
-//	if($.session.get('loginstatus')=='logining'){
-//		$('#loginInfo').text('登录失败阿喂，请确认用户名密码');
-//	}else{
-//		$('#loginInfo').text('')
-//		$('#loginInfo').hide();
-//	}
-	
 	$('#password').click(function(){
 		var telephone = $('#telephone').val();
 		if(telephone.length<1) {
@@ -25,6 +18,16 @@ $(document).ready(function(){
 			status=1;
 		}	
 	});
+	/*
+	var options = {
+			success:function(data){
+				alert(data);
+			}
+	};
+	$('#loginsubmit').click(function(){
+		$('#LoginForm').ajaxSubmit(options);
+	});
+	*/
 
 	$('#loginsubmit').click(function(){
 		var telephone = $('#telephone').val();
@@ -35,13 +38,9 @@ $(document).ready(function(){
 			$('#checkInfo').show();
 		}else{
 			$('#LoginForm').submit();
+			$.cookie("user",telephone);
 			$('#checkInfo').hide();
-//			if(session.getAttribute('status')=='error'){
-//				$('#checkInfo').text("用户名或密码记得填啦");
-//				$('#checkInfo').css('color','red');
-//				$('#checkInfo').show();
-//			}
-			
 		}
 	});
+	
 });

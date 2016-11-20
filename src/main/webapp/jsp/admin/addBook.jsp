@@ -1,65 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
+<% 
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html>
 <head>
 <title>添加Float Books</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link href="<%=request.getContextPath()%>/css/styleadmin.css" rel="stylesheet" type="text/css" media="all"/>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.9.0.min.js"></script> 
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/move-top.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/easing.js"></script>
-
-<script type="text/javascript">
-function show_date_string(elementId){
-	var date_string = document.getElementById(elementId).value.toString();
-	if(date_string.length > 0){
-		document.getElementById(elementId).value="";
-	}else{
-		document.getElementById(elementId).value="19710901";
-	}
-}
-
-function check_date(elementId){
-	var date_string = document.getElementById(elementId).value.toString();
-	if(date_string.length == 0){
-		document.getElementById(elementId).value="19710901";
-	}
-}
-//去除空格
-function trim(str) {
-	  return str.replace(/(^\s+)|(\s+$)/g, "");
-	}
-
-//判断是否输入信息完整,判断带*号的字段
-function beforeSubmit(){
-	var book_name =    trim(document.getElementByName(book_name).value.toString());
-	var date_string =  trim(document.getElementByName(date_string).value.toString());
-	var book_category= trim(document.getElementByName(book_category).value.toString());
-	var book_count=    trim(document.getElementByName(book_count).value.toString());
-	var useful=        trim(document.getElementByName(useful).value.toString());
-	var store_place=   trim(document.getElementByName(store_place).value.toString());
-	var introduce=     trim(document.getElementByName(introduce).value.toString());
-	
-	if(book_name.length<=0 || date_string.length<=0 || book_category.length<=0 || book_count.length<=0 ||
-	   useful.length<=0 || store_place.length<=0 || introduce.length<=0	)
-	{
-		alert("带 * 号的内容不能为空");
-		return null;
-	}
-	if((null == request.getSession().getAttribute("user") ) || (request.getSession().getAttribute("user").equals("null"))){
-		alert("身份可疑，不让你进！");
-		return null;
-	}
-	else{
-		document.bookinfo.submit();//输入内容完整，可提交
-	}
-}
-
-</script>
+<link type="text/css" href="<%=path%>/css/styleadmin.css" rel="stylesheet" media="all"/>
+<script type="text/javascript" src="<%=path%>/js/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="<%=path%>/js/move-top.js"></script>
+<script type="text/javascript" src="<%=path%>/js/easing.js"></script>
+<script type="text/javascript" src="<%=path%>/js/addbook.js"></script>
 
 </head>
 <body>
@@ -75,8 +30,8 @@ function beforeSubmit(){
 								</c:if>	
 							</a>
 						</li>
-						<li><a href="<%=request.getContextPath()%>/admin/ShowBooks">查看 Books</a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/addBook.jsp">添加 Books</a></li>
+						<li><a href="<%=path%>/admin/ShowBooks">查看 Books</a></li>
+						<li><a href="<%=path%>/admin/addBook.jsp">添加 Books</a></li>
 						
 					</ul>
 				</div>
@@ -96,7 +51,7 @@ function beforeSubmit(){
   	  		<div class="wrap">
 				<div class="header_top">
 					<div class="logo">
-						<a href="index.html"><img src="<%=request.getContextPath()%>/images/logoxiaowhite.jpg" alt="" /></a>
+						<a href="index.html"><img src="<%=path%>/images/logoxiaowhite.jpg" alt="" /></a>
 					</div>
 						<div class="header_top_right">
 							  <div class="search_box">
@@ -106,33 +61,9 @@ function beforeSubmit(){
 					     	</div>
 						 <div class="clear"></div>
 					</div>
-						  <script type="text/javascript">
-								function DropDown(el) {
-									this.dd = el;
-									this.initEvents();
-								}
-								DropDown.prototype = {
-									initEvents : function() {
-										var obj = this;
-					
-										obj.dd.on('click', function(event){
-											$(this).toggleClass('active');
-											event.stopPropagation();
-										});	
-									}
-								}
-					
-								$(function() {
-					
-									var dd = new DropDown( $('#dd') );
-					
-									$(document).click(function() {
-										// all dropdowns
-										$('.wrapper-dropdown-2').removeClass('active');
-									});
-					
-								});
-					    </script>
+						  <!-- <script type="text/javascript">
+								
+					    </script> -->
 			   <div class="clear"></div>
   		    </div>     				
    		</div>
@@ -150,7 +81,7 @@ function beforeSubmit(){
 				<div class="col span_2_of_3">
 				  <div class="contact-form">
 				  	<h2>添加Float Book</h2>
-					    <form  id="bookinfo" name="bookinfo" method="post" action="<%=request.getContextPath()%>/admin/savebook">
+					    <form  id="bookinfo" name="bookinfo" method="post" action="<%=path%>/admin/savebook">
 					    	<div>
 						    	<span><label>书名 *</label></span>
 						    	<span><input name="book_name" type="text" class="textbox" ></span>

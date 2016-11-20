@@ -156,6 +156,16 @@
 			<version>1.7.0</version>
 		</dependency>
     
+    	<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-servlet</artifactId>
+			<version>1.19</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId>
+			<artifactId>jersey-guice</artifactId>
+			<version>1.19</version>
+		</dependency>
     
     
   </dependencies>

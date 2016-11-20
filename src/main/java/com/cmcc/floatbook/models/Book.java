@@ -34,7 +34,8 @@ public class Book {
 	private String bookOwner;
 	private String storeDate;
 	private String bookImag;
-	private String bookintroduce;
+	private String bookIntroduce;
+	private String subtitle;
 	
 	public int getBookId() {
 		return bookId;
@@ -108,11 +109,17 @@ public class Book {
 	public void setBookImag(String bookImag) {
 		this.bookImag = bookImag;
 	}
-	public String getBookintroduce() {
-		return bookintroduce;
+	public String getBookIntroduce() {
+		return bookIntroduce;
 	}
-	public void setBookintroduce(String bookintroduce) {
-		this.bookintroduce = bookintroduce;
+	public void setBookIntroduce(String bookIntroduce) {
+		this.bookIntroduce = bookIntroduce;
+	}
+	public String getSubtitle() {
+		return subtitle;
+	}
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
 	}
 	
 	

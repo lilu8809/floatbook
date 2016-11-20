@@ -298,7 +298,7 @@ body {
 	-o-box-shadow: 0px 0px 3px rgb(150, 150, 150);
 }
 .grid_1_of_5:first-child {
-	margin-left: 0;
+	/* margin-left: 0; */
 }
 .images_1_of_5 {
 	width: 15.72%;
@@ -306,7 +306,22 @@ body {
 	text-align: center;
 	position: relative;
 }
-.images_1_of_5  img {
+.box{
+	position: relative; 
+}
+.box:before { 
+	content: ""; 
+	display: block; 
+	padding-top: 100%; 
+}
+.box img {
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	bottom: 0; 
+	right: 0;
+}
+.images_1_of_5 img {
 	max-width: 100%;
 }
 .images_1_of_5  h2  a{

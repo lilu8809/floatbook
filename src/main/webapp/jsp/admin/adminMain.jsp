@@ -13,26 +13,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link href="<%=path %>/css/styleadmin.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="<%=path %>/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
 	<script type="text/javascript" src="<%=path %>/js/jquery-2.1.1.min.js"></script> 
+	<script src="<%=path %>/js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="<%=path %>/js/move-top.js"></script>
 	<script type="text/javascript" src="<%=path %>/js/easing.js"></script>
 	<script type="text/javascript" src="<%=path %>/js/jquery.nivo.slider.js"></script>
 	<script type="text/javascript" src="<%=path %>/js/manage/manage.js"></script>
+	<script type="text/javascript" src="<%=path %>/js/template.js"></script>
 </head>
+<style>
+.right{float:right}
+</style>
 <body>
 	<div class="header">
 		 <div class="headertop_desc">
 			<div class="wrap">
 				<div class="nav_list">
 					<ul>
-						<li> <a href="#">
-								<script>
-								</script>
-								<c:if test='<%=(session.getAttribute("loginstatus")!=null) %>'>
-				       			欢迎 <%=(session.getAttribute("username") ) %>
-								</c:if>	
-								<c:if test='<%=(session.getAttribute("loginstatus")==null) %>'>
-								 	<a href="<%=path %>/jsp/common/login.jsp">要不要先登录再来啊-_-#</a>
-								</c:if>
+						<li> <a id="welcome" href="#">
+								
 							</a>
 						</li>
 						<li><a href="<%=path %>/admin/ShowBooks">查看 Books</a></li>
@@ -68,8 +66,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="header_bottom_left">				
 						<div class="categories">
 						   <ul>
-						  	   <h3>Float Books 类别</h3>
-							      <li><a href="<%=path %>/admin/ShowBooksByCategory?category=all">所有Float books</a></li>
+						  	   <h3>Books 类别</h3>
+							      <li><a href="<%=path %>/admin/ShowBooksByCategory?category=all">所有 books</a></li>
 							      <!-- 获取图书类别列表，并在下方显示 -->
 							      <li><a href="<%=path %>/admin/ShowBooksByCategory?category=Java家族">Java家族</a></li>
 							      <li><a href="<%=path %>/admin/ShowBooksByCategory?category=C/C++">C/C++</a></li>
@@ -87,10 +85,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  <div class="slider">
 							      	<div class="slider-wrapper theme-default">
 							            <div id="slider" class="nivoSlider">
-							                <img src="<%=path %>/images/zhui_feng_zheng_de_ren.jpg" data-thumb="<%=path %>/images/zhui_feng_zheng_de_ren.jpg" alt="" />
-							                <img src="<%=path %>/images/2.jpg" data-thumb="<%=path %>/images/2.jpg" alt="" />
-							                <img src="<%=path %>/images/zhui_feng_zheng_de_ren.jpg" data-thumb="<%=path %>/images/zhui_feng_zheng_de_ren.jpg" alt="" />
-							                <img src="<%=path %>/images/4.jpg" data-thumb="<%=path %>/images/4.jpg" alt="" />
+							                <%-- <img src="<%=path %>/images/zhui_feng_zheng_de_ren.jpg" data-thumb="<%=path %>/images/zhui_feng_zheng_de_ren.jpg" alt="" />
+							                 --%><img src="<%=path %>/images/2.jpg" data-thumb="<%=path %>/images/2.jpg" alt="" />
+							                <%-- <img src="<%=path %>/images/zhui_feng_zheng_de_ren.jpg" data-thumb="<%=path %>/images/zhui_feng_zheng_de_ren.jpg" alt="" />
+							                 --%><img src="<%=path %>/images/4.jpg" data-thumb="<%=path %>/images/4.jpg" alt="" />
 							                 <img src="<%=path %>/images/5.jpg" data-thumb="<%=path %>/images/5.jpg" alt="" />
 							            </div>
 							        </div>
@@ -107,133 +105,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="content">
     	<div class="content_top">
     		<div class="heading">
-    		<h3>可领养的 Float Books &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<%=path %>/admin/ShowBooksByCategory?category=all">更多</a></h3>
+    		<h3>可领养的书籍 <div class="right"><a href="<%=path %>/admin/ShowBooksByCategory?category=all">更多</a></div></h3>
     		</div>
     	</div>
-	      <div class="section group">
-	      <!-- 显示可借的图书的图片、简介、涉及的内容 -->
-	      <c:forEach var="topBorrowBook" items="${request.topBorrowBookList}">
-	      	
-				<div class="grid_1_of_5 images_1_of_5">
-				<!-- href="path /app/showDetails?appid=<c:out value='#pro.app_id' />"  -->
-				<c:if test="#topBorrowBook.bookImag.length()>0">
-					<a href="<%=path %>/admin/previewBook?isbn=<c:out value='${topBorrowBook.ISBN}'/>">
-						<img src="<%=path %>/images/<c:out value='#topBorrowBook.bookImag'/>" alt="" />
-					</a>
-				</c:if>
-				<c:if test="#topBorrowBook.bookImag.length()<=0">
-					<a href="<%=path %>/admin/previewBook?isbn=<c:out value='#topBorrowBook.ISBN'/>">
-						<img src="<%=path %>/images/beauty_and_the_beast.jpg" alt="" />
-					</a>
-				</c:if>
-					<h2><a href="#"><c:out value="#topBorrowBook.bookName" /></a></h2>
-					<div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees"><c:out value="#topBorrowBook.bookCategory" /></span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="<%=path %>/admin/previewBook?isbn=<c:out value='#topBorrowBook.ISBN'/>">查看</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>					 
-				</div>
-				</c:forEach>
-				<!--  
-				-->
-			</div>
+	    <div id="topBorrowBook" class="section group"></div>
 			
-			<div class="content_bottom">
+		<div class="content_bottom">
     		<div class="heading">
-    		<h3>已被领走的 Float Books</h3>
+    		<h3>已阅过的书籍<div class="right"><a href="<%=path %>/admin/ShowBooksByCategory?category=all">更多</a></div></h3>
     		</div>
-    	  </div>
-			<div class="section group">
-			<c:forEach var="topBorrowedOutBook"  items="#request.topBorrowedOutBookList" varStatus="status">
-				<div class="grid_1_of_5 images_1_of_5">
-					<c:if test="#topBorrowedOutBook.bookImag.length()>0">
-						<a href="<%=path %>/admin/previewBook?isbn=<c:out value='#topBorrowedOutBook.ISBN'/>">
-							<img src="<%=path %>/images/<c:out value='#topBorrowedOutBook.bookImag'/>" alt="" />
-						</a>
-					</c:if>
-					<c:if test="#topBorrowedOutBook.bookImag.length()<=0">
-					<a href="<%=path %>/admin/previewBook?isbn=<c:out value='#topBorrowedOutBook.ISBN'/>">
-						<img src="<%=path %>/images/beauty_and_the_beast.jpg" alt="" />
-					</a>
-				</c:if>
-				<h2><a href="#"><c:out value="#topBorrowedOutBook.bookName" /></a></h2>
-					<div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees"><c:out value="#topBorrowedOutBook.bookCategory" /></span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="<%=path %>/admin/previewBook?isbn=<c:out value='#topBorrowedOutBook.ISBN'/>">查看</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-					 
-				</div>
-				</c:forEach>
-				<!--  
-				<div class="grid_1_of_5 images_1_of_5">
-					 <a href="previewBook.jsp"><img src="<%=path %>/images/Eclipse.jpg" alt="" /></a>
-					 <h2><a href="previewBook.jsp">Eclipse</a></h2>
-					<div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$620.87</span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="previewBook.jsp">Add to Cart</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-					 
-				</div>
-				<div class="grid_1_of_5 images_1_of_5">
-					<a href="previewBook.jsp"><img src="<%=path %>/images/Coraline.jpg" alt="" /></a>
-					 <h2><a href="previewBook.jsp">Coraline</a></h2>
-					<div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$899.75</span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="previewBook.jsp">Add to Cart</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-				    
-				</div>
-				 
-				<div class="grid_1_of_5 images_1_of_5">
-					<a href="previewBook.jsp"><img src="./images/Unstoppable.jpg" alt="" /></a>
-					 <h2><a href="previewBook.jsp">Unstoppable</a></h2>
-					 <div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$599.00</span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="previewBook.jsp">Add to Cart</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-				</div>
-				<div class="grid_1_of_5 images_1_of_5">
-					<a href="previewBook.jsp"><img src="./images/Priest.jpg" alt="" /></a>
-					 <h2><a href="previewBook.jsp">Priest 3D</a></h2>
-					<div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$679.87</span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="previewBook.jsp">Add to Cart</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					 </div>				     
-				</div>
-				-->
-			</div>
-       </div>
+    	</div>
+		<div id="topBorrowedOutBook" class="section group"></div>
+	  </div>
+  	</div>
   </div>
-</div>
    <div class="footer">
    	  <div class="wrap">	
 	     <div class="section group">
@@ -297,6 +182,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 	</script>
     <a href="#" id="toTop"><span id="toTopHover"> </span></a>
+    
+    
+    <script id="htmlTemp" type="text/html">
+		<div id="grid" class="grid_1_of_5 images_1_of_5">
+			<a href="<%=path %>/admin/previewBook?isbn={{iSBN}}">
+				<div class="box"><img src="{{bookImag}}"></img></div>
+			</a>
+			<h2><div style="width:155px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+				<a href="#" title="{{bookName}}">{{bookName}}</a>
+				</div>
+			</h2>
+			<div class="price-details">
+				<div class="price-number">
+					<p><span class="rupees">{{bookCategory}}</span></p>
+				</div>
+				<div class="add-cart">								
+					<h4><a href="<%=path %>/admin/previewBook?isbn={{iSBN}}">查看</a></h4>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>					 
+	</script>
+	
 </body>
 </html>
 
